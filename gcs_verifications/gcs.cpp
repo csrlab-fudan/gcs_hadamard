@@ -74,17 +74,18 @@ int main() {
     cout << endl << "Level 2: ";
     long long num = 0;
     vector<pair<long long, double>> density;
-    for (long long j=1; j<=n; j++) {
+    for (long long j=1; j<=1e4; j++) {
         if (s4.check(j)) {
             num++;
-        }
-        if (j<=1e4) {
-	    density.push_back(make_pair(j, double(num)/double(j)));
-	}
-        else if ((long long)(j-1e4) % (long long)((n-1e4)/1e4) == 0) {
             density.push_back(make_pair(j, double(num)/double(j)));
         }
+	}
 
+    long long steps = (n-1e4)/1e4;
+    for (long long j = 1e4 + steps; j<=n; j += steps) {
+         auto it = upper_bound(s4.s4_vec.begin(), s4.s4_vec.end(), j);
+         auto dis = distance(s4.s4_vec.begin(), it);
+         density.push_back(make_pair(j, double(dis)/double(j)));
     }
     
     ofstream f("density.txt", ios::out);
