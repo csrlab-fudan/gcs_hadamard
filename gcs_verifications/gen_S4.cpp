@@ -133,7 +133,7 @@ void gen_S4(S4 &s4, vector<long long> &cp, long long n) {
     }
     s4.update(D, D.size(), exist);
 
-    gen_mx_product(s4, D.begin(), D.end(), C.begin(), C.end(), n, 1);
+    gen_mx_product(s4, D.begin(), D.end(), C.begin(), C.end(), n, 2);
     sort(s4.s4_vec.begin(), s4.s4_vec.end());
     time(&end);
     printf("\n2CD: time=%ld; Len: %zd; Large_set size: %zd", end-start, s4.s4_vec.size(), s4.set_large.size());
